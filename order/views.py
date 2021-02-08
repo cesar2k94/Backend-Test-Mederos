@@ -16,7 +16,7 @@ def order(request):
                 return render(request,"double.html")
             else: 
                 if reply['flag']==4:
-                    #Realizar la orden
+                    #Place the order
                     return render(request,"order.html",
                                  {'form': reply['form'], 
                                  'form1':reply['form1']}
@@ -25,5 +25,5 @@ def order(request):
                     if reply['flag']==3:
                         return render(request,"done.html")  
     else:
-        #Son más de las 11 am
+        #It's after 11 am
         return render(request,"late.html")

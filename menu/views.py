@@ -19,12 +19,12 @@ def menu(request):
         form=MenuForm(request.POST)
         if form.is_valid():
             if menu_double(form):
-                #Guardar el menú 
+                #Save the menu
                 lists=form.save(commit=False)
                 lists.save()
                 return render(request,"good.html")
             else:
-                #En ese día ya hay menú
+                #On that day there is already a menu
                 return render(request,"menu_double.html")    
     return render(request,"menu.html",{'form':form})
 
@@ -32,9 +32,9 @@ def menu(request):
 @staff_member_required(login_url="/login")
 def administrator(request):
     today=date.today()
-    #Pedidos del día
+    #Orders of the day
     form=order.objects.filter(created=today)
-    #Menú del día
+    #today's menu
     form1=models.menu.objects.filter(date=today)
     return render(request,"administrator.html", {'forms':form,'form1':form1})
 
@@ -48,11 +48,11 @@ def modify_menu(request):
         if form.is_valid():
             reply=modify(request,form,form1)
             if reply['flag']==1:
-                #No hay menú disponible para ese día
+                #There is no menu available for that day
                 return render(request,"exists.html")                
             else:
                 if reply['flag']==2:
-                    #Se modificó el menú
+                    #The menu was modified
                     return render(request,"good.html")
                 return render(request,"modify_menu.html",
                             {'form':form, 'form1':reply['form1']})

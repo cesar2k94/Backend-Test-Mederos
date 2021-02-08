@@ -12,7 +12,7 @@ def menu_double(form):
 def modify(request,form,form1):
     flag=0
     date=form.cleaned_data['date']
-    #Pregunta si hay menú disponible ese día
+    #Ask if there is a menu available that day
     if(models.menu.objects.filter(date=date).first()==None):
         flag=1
     else:
@@ -21,7 +21,7 @@ def modify(request,form,form1):
         if 'Guardar' in request.POST:
             form1=MenuForm(request.POST,instance=instances)
             if form1.is_valid():
-                #Guarda el menú modificado
+                #Save the modified menu
                 form1.save()
                 flag=2
     reply={

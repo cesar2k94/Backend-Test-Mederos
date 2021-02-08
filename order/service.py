@@ -4,9 +4,9 @@ from menu.forms import MenuForm
 from . import models
 from menu.models import menu
 
-#Comparar hora de pedido con horario límite 
+#Compare order time with deadline 
 def time_now(t):
-    limit=time(11,0,0)
+    limit=time(19,0,0)
     if limit > t:
         return True
     else:
@@ -20,17 +20,17 @@ def orders(request):
     form1=OrderForm()
     flag=0
     if(menu.objects.filter(date=today).first()==None):
-        #El menú del día no está listo
+        #The menu of the day is not ready
         flag=1
     else:
-        #Verifica si el usuario no ha solicitado el menú del día
+        #Check if the user has not requested the menu of the day
         if(models.order.objects.filter(user_id=user).filter(created=today).first()==None):
             instances=menu.objects.get(date=today)
             form = MenuForm(instance=instances)
             if request.method=="POST":
                 form1=OrderForm(request.POST)                   
                 if form1.is_valid():
-                    #Se realizó el pedido con éxito
+                    #The order was successfully placed
                     form1.instance.user_id=user
                     form1.instance.username=username
                     lista=form1.save()
@@ -40,7 +40,7 @@ def orders(request):
             else:
                 flag=4
         else:
-            #El usuario ya realizó su pedido
+            #The user has already placed their order
             flag=2
     reply={
         "flag":flag,
