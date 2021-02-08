@@ -1,0 +1,25 @@
+
+<h3>Menú del día</h3>
+{% for form in form1 %}   
+    <ol>
+        <li>{{form.option1}}</li>
+        <li>{{form.option2}}</li>
+        <li>{{form.option3}}</li>
+        <li>{{form.option4}}</li>
+    
+    </ol>
+{% endfor %}
+<hr /> 
+<h3>Pedidos</h3>
+{% for form in forms %}
+   <p>
+        <p>Opción: {{ form.option }}</p>
+        <p>Especificaciones: {{ form.specify }}</p>
+        <p>Trabajador: {{ form.username }}</p>
+        <hr /> 
+    </p>
+{% endfor %}
+<a href="/menu">Menú</a>
+<a href="/menu/modify_menu">Modificar Menú</a>
+<a href="/logout">Cerrar sesión</a>
+

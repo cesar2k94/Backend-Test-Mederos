@@ -1,0 +1,11 @@
+<h1>Menu</h1>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Guardar Menú</button>
+</form>
+
+
+<a href="/menu/administrator">Pedidos</a>
+<a href="/menu/modify_menu">Modificar Menú</a>
+<a href="/logout">Cerrar sesión</a>

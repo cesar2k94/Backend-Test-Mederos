@@ -1,0 +1,23 @@
+<h3>Selecciona la fecha para modificar menú</h>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" name="Cargar">Modificar Menú</button>
+
+
+<h1>Menú del día seleccionado</h1>
+
+
+<ol>
+    
+    <li>{{form1.option1}}
+    <li>{{form1.option2}}
+    <li>{{form1.option3}}
+    <li>{{form1.option4}}
+    
+</ol>
+<button type="submit" name="Guardar">Guardar Cambios</button>
+</form>
+
+<a href="/menu/administrator">Pedidos</a>
+<a href="/logout">Cerrar sesión</a>

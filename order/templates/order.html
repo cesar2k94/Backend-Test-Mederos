@@ -1,0 +1,29 @@
+
+
+<h1>Menú del día</h1>
+
+<ol>
+    
+    <li>{{form.option1}}
+    <li>{{form.option2}}
+    <li>{{form.option3}}
+    <li>{{form.option4}}
+    
+</ol>
+
+<hr />
+
+<form method="POST">
+    {% csrf_token %}
+    <p>Opción: {{ form1.option }}</p>
+    <hr />
+    <p>Especificaciones: {{ form1.specify }}</p>
+    
+    
+    <button type="submit">Solicitar Menú</button>
+</form>
+
+<hr />
+
+<a href="/logout">Cerrar sesión</a>
+
